@@ -226,6 +226,7 @@ app.get("/getproduct/:product_id", async (req, res) => {
     const { product_id } = req.params;
     let sql = `SELECT * FROM product WHERE product_id = '${product_id}'`;
     const newProduct = await pool.query(sql);
+
     res.json(newProduct.rows[0]);
   } catch (error) {
     console.log(error.message);
