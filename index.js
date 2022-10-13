@@ -87,8 +87,8 @@ app.put("/updateuser", async (req, res) => {
   try {
     const { mail, mdp, nom, prenom, img } = req.body;
     let sql = `UPDATE "user"
-    	SET mail ='${mail}', mdp ='${mdp}', nom ='${nom}', prenom ='${prenom}', img='${img}'
-    	WHERE mail='${mail}'`;
+    SET mail ='${mail}', mdp ='${mdp}', nom ='${nom}', prenom ='${prenom}', img='${img}'
+    WHERE mail='${mail}'`;
 
     const updateUser = await pool.query(sql);
     res.json("User was updated");
@@ -102,7 +102,7 @@ app.delete("/deleteuser", async (req, res) => {
   try {
     const { mail } = req.body;
     let sql = `DELETE FROM public.user
-    	WHERE mail='${mail}'`;
+    WHERE mail='${mail}'`;
 
     const deleteUser = await pool.query(sql);
     res.json("user was deleted");
@@ -164,8 +164,8 @@ http: app.put("/updateclient/:id", async (req, res) => {
     const { id } = req.params;
     const clientUpdate = req.body;
     let sql = `UPDATE client
-    	SET nom = '${clientUpdate.nom}', prenom ='${clientUpdate.prenom}', mail='${clientUpdate.mail}', add ='${clientUpdate.add}', tel = '${clientUpdate.tel}', img = '${clientUpdate.img}', user_id = '${clientUpdate.user_id}'
-    	WHERE client_id='${id}'`;
+    SET nom = '${clientUpdate.nom}', prenom ='${clientUpdate.prenom}', mail='${clientUpdate.mail}', add ='${clientUpdate.add}', tel = '${clientUpdate.tel}', img = '${clientUpdate.img}', user_id = '${clientUpdate.user_id}'
+    WHERE client_id='${id}'`;
 
     const updateClient = await pool.query(sql);
     res.json("Client was updated");
@@ -179,7 +179,7 @@ app.delete("/deleteclient/:client_id", async (req, res) => {
   try {
     const { client_id } = req.params;
     let sql = `DELETE FROM client
-    	WHERE client_id='${client_id}' `;
+    WHERE client_id='${client_id}' `;
 
     const deleteClient = await pool.query(sql);
     res.json("client was deleted");
@@ -239,8 +239,8 @@ app.put("/updateproduct/:id", async (req, res) => {
     const { id } = req.params;
     const productUpdate = req.body;
     let sql = `UPDATE product
-    	SET  nom = '${productUpdate.nom}', prix ='${productUpdate.prix}', image='${productUpdate.image}', description='${productUpdate.description}', user_id=${productUpdate.user_id} 
-    	WHERE product_id='${id}'`;
+    SET  nom = '${productUpdate.nom}', prix ='${productUpdate.prix}', image='${productUpdate.image}', description='${productUpdate.description}', user_id=${productUpdate.user_id} 
+    WHERE product_id='${id}'`;
     const updateProduct = await pool.query(sql);
     res.json("Product was updated");
   } catch (error) {
@@ -253,7 +253,7 @@ app.delete("/deleteproduct/:product_id", async (req, res) => {
   try {
     const { product_id } = req.params;
     let sql = `DELETE FROM public.product
-    	WHERE product_id='${product_id}'`;
+    WHERE product_id='${product_id}'`;
 
     const deleteProduct = await pool.query(sql);
     res.json("product was deleted");
@@ -303,8 +303,8 @@ app.put("/updatedetailorder/:id", async (req, res) => {
     const { id } = req.params;
     const detailOrderUpdate = req.body;
     let sql = `UPDATE detailorder
-    	SET  order_id ='${detailOrderUpdate.order_id}', nom='${detailOrderUpdate.nom}', prixunitaire=${detailOrderUpdate.prixunitaire}, image='${detailOrderUpdate.image}', quantite='${detailOrderUpdate.quantite}', prixtotal='${detailOrderUpdate.prixtotal}' 
-    	WHERE order_id='${id}'`;
+    SET  order_id ='${detailOrderUpdate.order_id}', nom='${detailOrderUpdate.nom}', prixunitaire=${detailOrderUpdate.prixunitaire}, image='${detailOrderUpdate.image}', quantite='${detailOrderUpdate.quantite}', prixtotal='${detailOrderUpdate.prixtotal}' 
+    WHERE order_id='${id}'`;
     const updatedetailorder = await pool.query(sql);
     res.json("Detailorder was updated");
   } catch (error) {
@@ -317,7 +317,7 @@ app.delete("/deletedetailorder/:detailorder_id", async (req, res) => {
   try {
     const { detailorder_id } = req.params;
     let sql = `DELETE FROM public.detailorder
-    	WHERE detailorder_id='${detailorder_id}'`;
+    WHERE detailorder_id='${detailorder_id}'`;
 
     const deleteDetailOrder = await pool.query(sql);
     res.json("detailOrder was deleted");
@@ -369,7 +369,7 @@ app.put("/updateglobalorder/id", async (req, res) => {
     const { id } = req.params;
     const globalOrderUpdate = req.body;
     let sql = `UPDATE globalorder
-    	SET user_id = '${globalOrderUpdate.user_id}', nomclient = '${globalOrderUpdate.nomclient}, client_id='${globalOrderUpdate.client_id}', dateorder ='${globalOrderUpdate.dateorder}', montanttotal='${globalOrderUpdate.montanttotal}'
+    SET user_id = '${globalOrderUpdate.user_id}', nomclient = '${globalOrderUpdate.nomclient}, client_id='${globalOrderUpdate.client_id}', dateorder ='${globalOrderUpdate.dateorder}', montanttotal='${globalOrderUpdate.montanttotal}'
 		WHERE order_id='${id}'`;
 
     const updateGlobalOrder = await pool.query(sql);
@@ -423,8 +423,8 @@ app.put("/updatesctedetails/:user_id", async (req, res) => {
     const sctedetailsUpdate = req.body;
     // console.log("sctedetailsUpdate", sctedetailsUpdate);
     let sql = `UPDATE sctedetails
-    	SET nom = '${sctedetailsUpdate.nom}', add ='${sctedetailsUpdate.add}', mail='${sctedetailsUpdate.mail}', tel ='${sctedetailsUpdate.tel}', siret = '${sctedetailsUpdate.siret}', logo = '${sctedetailsUpdate.logo}', user_id = '${sctedetailsUpdate.user_id}'
-    	WHERE user_id='${user_id}'`;
+    SET nom = '${sctedetailsUpdate.nom}', add ='${sctedetailsUpdate.add}', mail='${sctedetailsUpdate.mail}', tel ='${sctedetailsUpdate.tel}', siret = '${sctedetailsUpdate.siret}', logo = '${sctedetailsUpdate.logo}', user_id = '${sctedetailsUpdate.user_id}'
+    WHERE user_id='${user_id}'`;
 
     // console.log(sql);
     const updateSctedetails = await pool.query(sql);
@@ -439,7 +439,7 @@ app.delete("/deletesctedetails/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
     let sql = `DELETE FROM sctedetails
-    	WHERE user_id='${user_id}' `;
+    WHERE user_id='${user_id}' `;
 
     const deletesctedetails = await pool.query(sql);
     res.json("Sctedetails are deleted");
