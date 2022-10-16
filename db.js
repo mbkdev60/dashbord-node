@@ -7,5 +7,6 @@ const pool = new Pool({
   port: 5432,
   database: "users",
 });
+//la variable "pool" est un objet Pool du module node-postgres qui représente une connexion à la base de données.
 
 module.exports = pool;

@@ -1,5 +1,5 @@
-const express = require("express");
-const app = express();
+const express = require("express"); //La première ligne référence / importe le module Express.
+const app = express();//La ligne suivante sert à instancier un serveur Express
 const port = 5003;
 const cors = require("cors");
 const pool = require("./db");
@@ -450,4 +450,4 @@ app.delete("/deletesctedetails/:user_id", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server has started on port ${port}.`);
-});
+}); //Ce serveur est ensuite démarré et attend les requêtes arrivant sur le port. La fonction callback sert à afficher un message informatif lorsque le serveur est prêt à recevoir des requêtes.
