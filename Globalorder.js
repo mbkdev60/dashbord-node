@@ -111,14 +111,14 @@ router.get("/caMensuel/:id", async (req, res) => {
     date_part('month', dateorder);
     `;
 
-    const chiffreAffaies = await pool.query(sql);
+    const chiffreAffaires = await pool.query(sql);
 
     let data = {
       data: [],
       labels: [],
     };
 
-    for (const element of chiffreAffaies.rows) {
+    for (const element of chiffreAffaires.rows) {
       data.labels.push(element.month.substr(0, element.month.indexOf(" ")));
       data.data.push(element.order);
     }
