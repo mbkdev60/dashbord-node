@@ -75,19 +75,55 @@ router.get("/Topclient/:id", async (req, res) => {
     const { id } = req.params;
 
     let sql = `
-
     SELECT  sum(o.montanttotal), o.client_id, o.nomclient ,c.img ,c.prenom
-	FROM public.globalorder o , public.client c 
-  where o.user_id ='${id}'  and  o.client_id =c.client_id
-	GROUP BY o.order_id ,o.client_id  ,c.img , c.prenom 
-	order by   sum(o.montanttotal) DESC
-	limit 3
-
-  
-`;
+    FROM public.globalorder o , public.client c 
+    where o.user_id ='${id}'  and  o.client_id =c.client_id
+    GROUP BY o.order_id ,o.client_id  ,c.img , c.prenom 
+    order by   sum(o.montanttotal) DESC
+    limit 3
+    `;
 
     const listclient = await pool.query(sql);
     res.json(listclient.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+//chiffres d'affaires mensuels
+router.get("/caMensuel/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let sql = `
+    SELECT
+    to_char(dateorder, 'Month YYYY') AS Month,
+    count(DISTINCT order_id) As order
+    FROM
+    globalorder
+    WHERE
+    date_part('year', dateorder) = 2022
+    and user_id = '${id}'
+    GROUP BY
+    date_part('month', dateorder),
+    to_char(dateorder, 'Month YYYY')
+    ORDER BY
+    date_part('month', dateorder);
+    `;
+
+    const chiffreAffaies = await pool.query(sql);
+
+    let data = {
+      data: [],
+      labels: [],
+    };
+
+    for (const element of chiffreAffaies.rows) {
+      data.labels.push(element.month.substr(0, element.month.indexOf(" ")));
+      data.data.push(element.order);
+    }
+
+    res.json(data);
   } catch (error) {
     console.log(error.message);
   }
