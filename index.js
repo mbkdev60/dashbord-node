@@ -61,12 +61,12 @@ app.post(
   function (req, res) {
     const { originalname } = req.files[0];
     //return res
-      //.status(200)
-      //.json(`${process.env.REACT_APP_API_URL}/` + originalname);
-    return res.status(200).json("http://192.168.2.83:5003/" + originalname);
+    //.status(200)
+    //.json(`${process.env.REACT_APP_API_URL}/` + originalname);
+    return res.status(200).json("http://localhost:5003/" + originalname);
+    //  return res.status(200).json("http://192.168.2.83:5003/" + originalname);
   }
 );
-
 
 app.listen(port, () => {
   console.log(`Server has started on port ${port}.`);
