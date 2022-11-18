@@ -78,7 +78,7 @@ router.get("/Topclient/:id", async (req, res) => {
     SELECT  sum(o.montanttotal), o.client_id, o.nomclient ,c.img ,c.prenom
     FROM public.globalorder o , public.client c 
     where o.user_id ='${id}'  and  o.client_id =c.client_id
-    GROUP BY o.order_id ,o.client_id  ,c.img , c.prenom 
+    GROUP BY o.client_id , o.nomclient  ,c.img , c.prenom 
     order by   sum(o.montanttotal) DESC
     limit 3
     `;
@@ -134,7 +134,7 @@ router.get("/caMensuel/:id", async (req, res) => {
 
     for (const element of chiffreAffaires.rows) {
       data.labels.push(element.month);
-      data.data.push(element.sum );
+      data.data.push(element.sum);
     }
 
     res.json(data);
