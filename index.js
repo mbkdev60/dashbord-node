@@ -1,4 +1,4 @@
-const express = require("express"); //La première ligne référence / importe le module Express.
+const express = require("express"); //La première ligne référence / importe le module Express pour créer le serveur.
 const app = express(); //La ligne suivante sert à instancier un serveur Express
 const port = 5003;
 const cors = require("cors");
@@ -19,10 +19,11 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-
+// L'appel de use(cors()) permettra au serveur express de répondre aux demandes de contrôle en amont .
+// C'est essentiellement rendre notre serveur accessible à tout domaine qui lui demande une ressource via un navigateur.
 const multer = require("multer");
 
-app.use(express.json());
+app.use(express.json()); //Utilise un middleware pour analyser les requêtes.
 
 app.use("/", express.static(path.join("images")));
 
