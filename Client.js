@@ -1,6 +1,6 @@
 const express = require("express");
 const pool = require("./db");
-const app = express();
+//const app = express();
 const router = express.Router();
 
 //create a new client
@@ -49,7 +49,7 @@ router.get("/getclient/:client_id", async (req, res) => {
 });
 
 //update a client
-http: router.put("/updateclient/:id", async (req, res) => {
+router.put("/updateclient/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const clientUpdate = req.body;
