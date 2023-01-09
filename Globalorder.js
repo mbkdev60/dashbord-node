@@ -59,8 +59,8 @@ router.get("/Totalcmd/:id", async (req, res) => {
     const { id } = req.params;
 
     let sql = `SELECT SUM(montanttotal)
-          FROM globalorder
-	      where user_id='${id}'`;
+    FROM globalorder
+    where user_id='${id}'`;
 
     const Somme = await pool.query(sql);
     res.json(Somme.rows[0].sum);
